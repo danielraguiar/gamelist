@@ -11,7 +11,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Builder
-@Table(name = "game_list")
+@Table(name = "tb_game_list")
 public class GameList {
 
     @Id
