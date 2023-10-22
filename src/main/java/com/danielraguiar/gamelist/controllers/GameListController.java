@@ -3,6 +3,7 @@ package com.danielraguiar.gamelist.controllers;
 import com.danielraguiar.gamelist.dto.GameDTO;
 import com.danielraguiar.gamelist.dto.GameListDTO;
 import com.danielraguiar.gamelist.dto.GameShortDTO;
+import com.danielraguiar.gamelist.projections.GameShortProjection;
 import com.danielraguiar.gamelist.services.GameListService;
 import com.danielraguiar.gamelist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,18 @@ public class GameListController {
 
     @Autowired
     private GameListService gameListService;
+
+    @Autowired
+    private GameService gameService;
     @GetMapping
     public List<GameListDTO> findAll() {
         List<GameListDTO> result = gameListService.findAll();
+        return result;
+    }
+
+    @GetMapping(value = "/{listId}/games")
+    public List<GameShortDTO> findByList(@PathVariable Long listId) {
+        List<GameShortDTO> result = gameService.findByList(listId);
         return result;
     }
 }

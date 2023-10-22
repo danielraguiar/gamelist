@@ -1,6 +1,7 @@
 package com.danielraguiar.gamelist.dto;
 
 import com.danielraguiar.gamelist.entities.Game;
+import com.danielraguiar.gamelist.projections.GameShortProjection;
 import lombok.*;
 
 import java.util.List;
@@ -34,6 +35,13 @@ public class GameShortDTO {
         return content.stream()
                 .map(GameShortDTO::entityToDto)
                 .collect(Collectors.toList());
+    }
 
+    public GameShortDTO(GameShortProjection projection) {
+        id = projection.getId();
+        title = projection.getTitle();
+        year = projection.getYear();
+        imgUrl = projection.getImgUrl();
+        shortDescription = projection.getShortDescription();
     }
 }
